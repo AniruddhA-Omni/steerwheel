@@ -13,7 +13,7 @@ while True:
     img = cv2.flip(img, 1)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     blur_img = cv2.GaussianBlur(img, (11, 11), 0)
-    colour_low = np.array([40, 102, 116])
+    colour_low = np.array([37, 52, 77])
     colour_upp = np.array([100, 255, 255])
     mask = cv2.inRange(blur_img, colour_low, colour_upp)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))

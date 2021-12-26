@@ -13,6 +13,10 @@ A = 0x1E
 S = 0x1F
 D = 0x20
 Space = 0x39
+# Add new keys here (example- Q = 0x10)
+####
+
+####
 
 # C struct redefinitions
 PUL = ctypes.POINTER(ctypes.c_ulong)

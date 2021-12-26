@@ -10,10 +10,10 @@ currentKey = []
 while True:
     key = False
     img = cap.read()
-    img = cv2.flip(img, 1)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    img = cv2.flip(img, 1)      # Flip the image
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  # Convert colour BGR format to HSV format
     blur_img = cv2.GaussianBlur(img, (11, 11), 0)
-    colour_low = np.array([37, 52, 77])
+    colour_low = np.array([37, 89, 129])         # threshold HSV values obtained from color_select.py
     colour_upp = np.array([100, 255, 255])
     mask = cv2.inRange(blur_img, colour_low, colour_upp)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
@@ -49,21 +49,21 @@ while True:
         key = True
         currentKey.append(Space)
 
-    img = cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
+    img = cv2.cvtColor(img, cv2.COLOR_HSV2BGR)      # Convert colour HSV format to BGR format
     img = cv2.rectangle(img, (0, 0), (width//2 - 35, height//2), (0, 255, 0), 1)
-    cv2.putText(img, "LEFT", (110, 30), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0))
+    cv2.putText(img, "LEFT", (110, 30), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0), 2)
 
     img = cv2.rectangle(img, (width//2 + 35, 0), (width, height//2), (0, 255, 0), 1)
-    cv2.putText(img, "RIGHT", (440, 30), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0))
+    cv2.putText(img, "RIGHT", (440, 30), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0), 2)
 
     img = cv2.rectangle(img, (2*(width//5), 3*height//4), (3*width//5, height), (0, 255, 0), 1)
-    cv2.putText(img, "NITRO", (2*(width//5) + 20, height - 10), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0))
+    cv2.putText(img, "NITRO", (2*(width//5) + 20, height - 10), cv2.FONT_HERSHEY_DUPLEX, 1, (139, 0, 0), 2)
 
     cv2.imshow("Steering wheel", img)
     if not key and len(currentKey) != 0:
         for current in currentKey:
             ReleaseKey(current)
-    if cv2.waitKey(1) == 27:
+    if cv2.waitKey(1) == 27:        # Press ESC to quit
         break
 
 cv2.destroyAllWindows()

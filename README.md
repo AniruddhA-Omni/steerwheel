@@ -26,7 +26,7 @@
    ```
 
 ## <u>Instructions</u>
-
+_If you want to run the program with default settings, then skip point no. 1 and 2._
 1. Selecting Colours
    - **Run** _color_select.py_
    - Adjust the trackbars to select the desired colour
